@@ -47,6 +47,8 @@ function InputSample(){
         setInputs(nextInputs);
         */
 
+
+        
         setInputs({
             ...inputs,
             [name]:value,
