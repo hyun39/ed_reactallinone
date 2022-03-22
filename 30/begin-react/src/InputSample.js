@@ -6,27 +6,66 @@ function InputSample(){
 
     const [text, setText] = useState('')
 
+    const [inputs, setInputs] = useState({
+        nm:'',
+        nickname:'',
+    })
+
+    const {nm, nickname}  = inputs;
+
     const onClick = (e) =>{
         setText('')
     }
 
     const onChange = (e) =>{
 
+        const {name, value} = e.target;
+
+        console.log(e.target.name);
         console.log(e.target.value);
 
-        setText(e.target.value);
+        /* inputs 형식 데이터에 name, value를 넣는다 */
+        //const nextInputs = {
+        //    ...inputs,
+        //}
+        //nextInputs[name] = value;
+
+        // 위와 같은 것이다.
+        
+        // 불편성을 지킨다
+        // 스프레드
+        const nextInputs = {
+            ...inputs,
+            [name]:value,
+        }
+
+        const onReset = ()=>{
+            setInputs({
+                nm:'',
+                nickname:''
+            }
+            )
+        }
+
+
+
+
+        console.log(nextInputs);
     }
 
     return (
         <div>
-            <input onChange={onChange} value={text}/>
-            <button onClick={onClick}>초기화</button>
+            <input name='nm' placeholder="이름"  
+                onChange={onChange} 
+                value={nm}/>
+            <input name='nickname' placeholder="닉네임" 
+                onChange={onChange} 
+                value ={nickname} />
+            <button onClick={onReset}>초기화</button>
             <div>
-            <b>값:</b>
-            {text}
+            <b>{nm}({nickname})</b>
             </div>
         </div>
-
     )
 }
 
