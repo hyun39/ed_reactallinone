@@ -17,6 +17,14 @@ function InputSample(){
         setText('')
     }
 
+    const onReset = ()=>{
+        setInputs({
+            nm:'',
+            nickname:''
+        }
+        )
+    }
+
     const onChange = (e) =>{
 
         const {name, value} = e.target;
@@ -38,15 +46,6 @@ function InputSample(){
             ...inputs,
             [name]:value,
         }
-
-        const onReset = ()=>{
-            setInputs({
-                nm:'',
-                nickname:''
-            }
-            )
-        }
-
 
 
 
