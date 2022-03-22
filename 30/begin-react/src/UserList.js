@@ -10,6 +10,7 @@ function User({user}){
 
 }
 
+
 function UserList(){
     const users = [
         {
@@ -32,19 +33,21 @@ function UserList(){
 
 
     return (
-        <div>
-            {/*
+
+        /*
+        <div> 
             <User user={users[0]}/>
             <User user={users[1]}/>
-            <User user={users[2]}/>*/}
+            <User user={users[2]}/>
+        </div>*/
 
+        <div>{
             users.map(
                 user => (<User user={user} key={user.id}/>)
             )
-
+        }
         </div>
     )
-}
-
-
-export default UserList;
+    }
+    
+ export default UserList;   
