@@ -4,18 +4,12 @@ import React, { useState } from "react";
 
 function InputSample(){
 
-    const [text, setText] = useState('')
-
     const [inputs, setInputs] = useState({
         nm:'',
         nickname:'',
     })
 
     const {nm, nickname}  = inputs;
-
-    const onClick = (e) =>{
-        setText('')
-    }
 
     const onReset = ()=>{
         setInputs({
@@ -33,23 +27,31 @@ function InputSample(){
         console.log(e.target.value);
 
         /* inputs 형식 데이터에 name, value를 넣는다 */
-        //const nextInputs = {
-        //    ...inputs,
-        //}
-        //nextInputs[name] = value;
+        /*const nextInputs = {
+            ...inputs,
+        }
+        nextInputs[name] = value;
 
-        // 위와 같은 것이다.
-        
-        // 불편성을 지킨다
-        // 스프레드
+        위와 같은 것이다.
+
+        불편성을 지킨다
+        스프레드
+        */
+
+        /*
         const nextInputs = {
             ...inputs,
             [name]:value,
         }
 
+        setInputs(nextInputs);
+        */
 
+        setInputs({
+            ...inputs,
+            [name]:value,
+        })
 
-        console.log(nextInputs);
     }
 
     return (
@@ -60,6 +62,7 @@ function InputSample(){
             <input name='nickname' placeholder="닉네임" 
                 onChange={onChange} 
                 value ={nickname} />
+                
             <button onClick={onReset}>초기화</button>
             <div>
             <b>{nm}({nickname})</b>
