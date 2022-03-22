@@ -2,6 +2,8 @@
 import React, { useState, useRef } from "react";
 
 
+
+
 function InputSample(){
 
     const [inputs, setInputs] = useState({
