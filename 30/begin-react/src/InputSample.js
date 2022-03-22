@@ -6,6 +6,10 @@ function InputSample(){
 
     const [text, setText] = useState('')
 
+    const onClick = (e) =>{
+        setText('')
+    }
+
     const onChange = (e) =>{
 
         console.log(e.target.value);
@@ -16,7 +20,7 @@ function InputSample(){
     return (
         <div>
             <input onChange={onChange} value={text}/>
-            <button>초기화</button>
+            <button onClick={onClick}>초기화</button>
             <div>
             <b>값:</b>
             {text}
