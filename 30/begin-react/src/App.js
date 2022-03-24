@@ -22,7 +22,7 @@ function App() {
     })
   }
 
-  const users = [
+  const [users, setUsers] = useState([
     {
         id:1,
         username:'velopert',
@@ -39,11 +39,27 @@ function App() {
         username:'velopert3',
         email:'public.velopert3.gmail..com'
     }        
-];
+]);
 
   const nextId = useRef(4);
 
   const onCreate = () => {
+
+    const user = {
+      id:nextId.current,
+      username,
+      email
+    };
+     
+    setUsers([...users,user]);
+
+    //setUsers(users.concat(user));
+
+
+    setInputs({
+      username:'',
+      email:''
+    });
     console.log(nextId.current);
     nextId.current+=1;
   }
