@@ -11,26 +11,7 @@ function User({user}){
 }
 
 
-function UserList(){
-    const users = [
-        {
-            id:1,
-            username:'velopert',
-            email:'public.velopert.gmail..com'
-        },
-        {
-            id:2,
-            username:'velopert2',
-            email:'public.velopert2.gmail..com'
-
-        },
-        {
-            id:3,
-            username:'velopert3',
-            email:'public.velopert3.gmail..com'
-        }        
-    ];
-
+function UserList({users}){
 
     return (
 
