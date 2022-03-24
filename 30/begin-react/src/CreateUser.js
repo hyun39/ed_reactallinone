@@ -20,4 +20,4 @@ function CreateUser({username, email, onChange, onCreate}){
         </div>
 }
 
-export default App;
+export default CreateUser;

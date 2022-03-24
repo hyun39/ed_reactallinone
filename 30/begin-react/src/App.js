@@ -20,8 +20,6 @@ function App() {
       ...inputs,
       [name]:value
     })
-
-
   }
 
   const users = [
@@ -56,7 +54,8 @@ function App() {
     <CreateUser 
       username={username} 
       email={email} 
-      onChange={onChange} />
+      onChange={onChange} 
+      onCreate={onCreate} />
     <UserList users={users}/>
     </>
   );
