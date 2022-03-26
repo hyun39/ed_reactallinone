@@ -9,10 +9,10 @@ function App() {
 
   const [inputs, setInputs] = new useState({
     username:'',
-    email:''
+    email:'',
   });
 
-  const {username, email} = inputs;
+  const {username, email, active} = inputs;
 
   const onChange = e => {
     const {name, value} = e.target;
@@ -26,18 +26,21 @@ function App() {
     {
         id:1,
         username:'velopert',
-        email:'public.velopert.gmail..com'
+        email:'public.velopert.gmail..com',
+        active:true
     },
     {
         id:2,
         username:'velopert2',
-        email:'public.velopert2.gmail..com'
+        email:'public.velopert2.gmail..com',
+        active:false
 
     },
     {
         id:3,
         username:'velopert3',
-        email:'public.velopert3.gmail..com'
+        email:'public.velopert3.gmail..com',
+        active:false
     }        
 ]);
 
@@ -50,7 +53,7 @@ function App() {
       username,
       email
     };
-     
+
     setUsers([...users,user]);
 
     //setUsers(users.concat(user));
@@ -58,21 +61,45 @@ function App() {
 
     setInputs({
       username:'',
-      email:''
+      email:'',
     });
     console.log(nextId.current);
     nextId.current+=1;
-  }
+  };
+
+
+  const onRemove = (id) => {
+    console.log("onRemove" );
+    setUsers(users.filter(user=>user.id!==id));
+  };
+
+  const onToggle = (id) => {
+
+    console.log(users[0].active);
+
+    setUsers(users.map(
+      user=> user.id === id
+        ? {...user,active:!user.active}:
+        user
+    ));
+  };
+
 
 
   return (
     <>
-    <CreateUser 
-      username={username} 
-      email={email} 
-      onChange={onChange} 
-      onCreate={onCreate} />
-    <UserList users={users}/>
+      <CreateUser 
+        username={username} 
+        email={email} 
+        onChange={onChange} 
+        onCreate={onCreate} 
+      />
+      
+      <UserList 
+        users={users}
+        onRemove={onRemove}
+        onToggle={onToggle}
+        />
     </>
   );
 }
