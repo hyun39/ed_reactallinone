@@ -1,6 +1,6 @@
 
 
-import React, {useRef, useState, useMemo} from 'react'
+import React, {useRef, useState, useMemo, useCallback} from 'react'
 
 import UserList from './UserList';
 import CreateUser from './CreateUser'
@@ -9,7 +9,7 @@ import CreateUser from './CreateUser'
 
 function countActiveUsers(users){
   console.log("count");
-  return users.filter( user => user.active ).length;
+  return users.filter( user => user.activce ).length;
 }
 
 
@@ -24,13 +24,13 @@ function App() {
 
   const {username, email, active} = inputs;
 
-  const onChange = e => {
+  const onChange = useCallback(e => {
     const {name, value} = e.target;
     setInputs({
       ...inputs,
       [name]:value
     })
-  }
+  }, [inputs])
 
   const [users, setUsers] = useState([
     {
@@ -57,7 +57,7 @@ function App() {
   // useref로 계속 유지가 된다.
   const nextId = useRef(4);
 
-  const onCreate = () => {
+  const onCreate = useCallback(() => {
 
     const user = {
       id:nextId.current,
@@ -76,15 +76,15 @@ function App() {
     });
     console.log(nextId.current);
     nextId.current+=1;
-  };
+  },[username, email,users]);
 
 
-  const onRemove = (id) => {
+  const onRemove = useCallback((id) => {
     console.log("onRemove" );
     setUsers(users.filter(user=>user.id!==id));
-  };
+  },[users]);
 
-  const onToggle = (id) => {
+  const onToggle = useCallback((id) => {
 
     console.log(users[0].active);
 
@@ -93,7 +93,8 @@ function App() {
         ? {...user,active:!user.active}:
         user
     ));
-  };
+  },[users]);
+  
 
   const activeUserCnt = useMemo( ()=>  countActiveUsers(users), [users]);
 
