@@ -6,6 +6,8 @@ function User({user, onRemove, onToggle}){
 
     const {username,email, id, active} = user;
 
+    // useeffect를 이용하여 mount 전후 ( 특정 값의 변경 전후 ) 를 캐치를 할수가 있다.
+
     // useEffect(()=>{
 
     //     console.log("컴포넌트가 화면에 나타남");
