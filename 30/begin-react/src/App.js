@@ -8,6 +8,7 @@ import CreateUser from './CreateUser'
 
 
 function countActiveUsers(users){
+  console.log("count");
   return users.filter( user => user.active ).length;
 }
 
@@ -15,6 +16,7 @@ function countActiveUsers(users){
 
 function App() {
 
+  // usestate는 가상돔으로 관리를 하는 것이다.
   const [inputs, setInputs] = new useState({
     username:'',
     email:'',
@@ -52,6 +54,7 @@ function App() {
     }        
 ]);
 
+  // useref로 계속 유지가 된다.
   const nextId = useRef(4);
 
   const onCreate = () => {
@@ -93,6 +96,9 @@ function App() {
   };
 
   const activeUserCnt = useMemo( ()=>  countActiveUsers(users), [users]);
+
+  // 아래와 같잉 하면 edit에서 변경이 될때마다 unchange 이벤트가 발생을 하고 이벤트가 발생을 할때마다 rerendering이 발생하면서 아래 함수가 호출이 된다. 
+  // const activeUserCnt = countActiveUsers(users);
 
   return (
     <>
